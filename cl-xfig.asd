@@ -1,8 +1,4 @@
-(defpackage :cl-xfig-asd
-  (:use :asdf :cl))
-(in-package :cl-xfig-asd)
-
-(defsystem :cl-xfig
+(asdf:defsystem :cl-xfig
     :name "cl-xfig"
     :author "Mirko Vukovic mirko.vukovic@us.tel.com"
     :version "0.1"
@@ -10,6 +6,17 @@
     :licence "TEL"
     :description "xfig generation from cl"
     :long-description ""
+    :serial t
+    :depends-on
+    ("lisp-unit"
+     "alexandria"
+     "anaphora")
     :components
-    ((:file "cl-xfig")))
+    ((:file "cl-xfig-package-def")
+     (:file "page-definition")
+     (:file "drawing-style-variables")
+     (:file "figure-objects")
+     (:file "object-generation")
+     (:file "emit-objects")
+     (:file "samples")))
     
