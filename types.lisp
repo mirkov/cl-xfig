@@ -85,3 +85,10 @@
 (deftype join-style ()
   `(and integer
 	(satisfies match-join-style-p)))
+
+(defun arrow-def1 (arg)
+  (or (null arg)
+      (typep arg 'arrow-def)))
+
+(deftype arrow-def1 ()
+  `(satisfies arrow-def1))
