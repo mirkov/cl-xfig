@@ -15,6 +15,7 @@
     ((:file "cl-xfig-package-def")
      (:file "page-definition")
      (:file "drawing-style-variables")
+     (:file "types")
      (:file "figure-objects")
      (:file "object-generation")
      (:file "emit-objects")

@@ -1,3 +1,5 @@
+(in-package :cl-xfig)
+
 (defmacro with-output-to-fig-file ((stream file) &body body)
   `(with-output-to-file (,stream ,file
 				 :if-exists :supersede)
