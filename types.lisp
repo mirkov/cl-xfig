@@ -92,3 +92,10 @@
 
 (deftype arrow-def1 ()
   `(satisfies arrow-def1))
+
+(defun integer-32-543p (arg)
+  (and (>= arg 32)
+       (<= 543 arg)))
+
+(deftype integer-32->543 ()
+  `(satisfies integer-32->543p))

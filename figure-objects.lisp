@@ -103,6 +103,17 @@
 
 
 ;;; graphic objects
+
+(defclass color (fig-object)
+  ((object-code :initform 0
+		:allocation class)
+   (color-number :initarg :color-number
+		 :reader color-number
+		 :type color-number)
+   (hex-code :initarg hex-code
+	     :reader hex-code
+	     :type color-hex-code)))
+
 (defclass arc (fig-object drawable-object-mixin
 			  terminated-line-mixin)
   ((object-code :initform 5
