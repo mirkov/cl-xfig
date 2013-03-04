@@ -8,21 +8,28 @@
 
 
 
-;; the following is based on a comment by Pascal Constanza on 11/11/09
-
+;; the following is based on a post by Pascal Constanza on 11/11/09 and followups:
+;; - https://groups.google.com/d/msg/comp.lang.lisp/TsmbsOK32DM/9Q7prvFV9YsJ
+;; - https://groups.google.com/d/msg/comp.lang.lisp/TsmbsOK32DM/AgVgz9MveJAJ
 
 (defclass checked-class (standard-class)
   ())
-(defmethod sb-mop:validate-superclass ((class checked-class)
+#+sbcl(defmethod sb-mop:validate-superclass ((class checked-class)
+				       (superclass standard-class))
+  t)
+#+clisp(defmethod validate-superclass ((class checked-class)
 				       (superclass standard-class))
   t)
 
 
-(defmethod (setf sb-mop:slot-value-using-class) :before
+(defmethod (setf #+sbcl sb-mop:slot-value-using-class
+		 #+clisp slot-value-using-class) :before
     (new-value (class checked-class) object slot)
-  (let ((class-name (sb-mop:class-name (class-of object)))
-	(slot-name (sb-mop:slot-definition-name slot)))
-  (assert (typep new-value (sb-mop:slot-definition-type slot)) ()
+  (let ((class-name (class-name (class-of object)))
+	(slot-name (#+sbcl sb-mop:slot-definition-name
+			   #+clisp slot-definition-name slot)))
+  (assert (typep new-value (#+sbcl sb-mop:slot-definition-type
+				   #+clisp slot-definition-name slot)) ()
 	  "Slot ~a of class ~a cannot accept value ~a" slot-name class-name
 	  new-value)))
 

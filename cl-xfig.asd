@@ -10,7 +10,8 @@
     :depends-on
     ("lisp-unit"
      "alexandria"
-     "anaphora")
+     "anaphora"
+     #+clisp "closer-mop")
     :components
     ((:file "cl-xfig-package-def")
      (:file "page-definition")
