@@ -1,0 +1,30 @@
+#+title: CL-XFIG
+
+Package for generating figures in xfig's format.  
+
+* Code status
+  Under design and early development
+
+* Code design
+
+** Base level
+   CLOS-based code that
+   - defines objects that store xfig's primitives
+   - ~make-...~ functions for creating those objects
+   - ~emit-...~ methods for dumping the objects into a file
+   - Object duplication and manipulation facilities
+     - Mirroring
+     - Moving
+     - Scaling
+     - Rotating
+     - Grouping
+
+
+   The base level uses Xfig's basic units, and is somewhat user
+   unfriendly.  More user friendliness is achieved in the next level.
+
+** User level
+   - User friendly fig object definitions
+   - More sophisticated object cloning facilities
+   - A container object that contains the whole figure and emits it
+     according to the order specified by the Xfig standard
