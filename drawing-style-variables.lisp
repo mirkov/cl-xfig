@@ -180,3 +180,59 @@
 (defparameter *forward-arrow* nil)
 (defparameter *backward-arrow* nil)
 
+
+(defvar *font-flags*
+  '(:rigid 0
+    :latex 1
+    :ps 2
+    :hidden 3)
+  "Bits for text objects")
+
+(defvar *font-field/latex*
+  '(:default 0
+    :roman 1
+    :bold 2
+    :italic 3
+    :san-serif 4
+    :typewriter 5)
+  "`font' field values for the text object when bit 2 of
+`font-flags' bit is set")
+
+(defvar *font-field/ps*
+  '(:Default-font -1
+    :Times-Roman 0
+    :Times-Italic 1
+    :Times-Bold 2
+    :Times-Bold-Italic 3
+    :AvantGarde-Book 4
+    :AvantGarde-Book-Oblique 5
+    :AvantGarde-Demi 6
+    :AvantGarde-Demi-Oblique 7
+    :Bookman-Light 8
+    :Bookman-Light-Italic 9
+    :Bookman-Demi 10
+    :Bookman-Demi-Italic 11
+    :Courier 12
+    :Courier-Oblique 13
+    :Courier-Bold 14
+    :Courier-Bold-Oblique 15
+    :Helvetica 16
+    :Helvetica-Oblique 17
+    :Helvetica-Bold 18
+    :Helvetica-Bold-Oblique 19
+    :Helvetica-Narrow 20
+    :Helvetica-Narrow-Oblique 21
+    :Helvetica-Narrow-Bold 22
+    :Helvetica-Narrow-Bold-Oblique 23
+    :New-Century-Schoolbook-Roman 24
+    :New-Century-Schoolbook-Italic 25
+    :New-Century-Schoolbook-Bold 26
+    :New-Century-Schoolbook-Bold-Italic 27
+    :Palatino-Roman 28
+    :Palatino-Italic 29
+    :Palatino-Bold 30
+    :Palatino-Bold-Italic 31
+    :Symbol 32
+    :Zapf-Chancery-Medium-Italic 33
+    :Zapf-Dingbats   34)
+  "`font' field values for post script fonts (when bit 2 of font-flags is set)")

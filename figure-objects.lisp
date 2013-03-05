@@ -34,23 +34,23 @@
 	  new-value)))
 
 
-;;; mixin's
+;;; mixin's and helper objects
 (defclass drawable-object-mixin ()
   ((sub-type :reader sub-type
 	     :initarg :sub-type
 	     :documentation "Object sub-type")
    (depth :reader depth
 	  :initarg :depth
-	  :type 'depth))
+	  :type (integer 0 999)))
   (:documentation "Common properties to all explicitly drawable objects"))
 
 (defclass arrow-def ()
   ((type :reader arrow-type
 	 :initarg :arrow-type
-	 :type arrow-type)
+	 :type (integer 0 4))
    (style :reader arrow-style
 	  :initarg :arrow-style
-	  :type arrow-style)
+	  :type (integer 0 1))
    (thickness :reader arrow-thickness
 	      :initarg :arrow-thickness
 	      :type float>0)
@@ -104,15 +104,23 @@
 
 ;;; graphic objects
 
+(defclass compund (fig-object)
+  ((object-doce :initform 6
+		:allocation :class)
+   (max-x :reader max-x)
+   (max-y :reader max-y)
+   (min-x :reader min-x)
+   (min-y :reader min-y)))
+
 (defclass color (fig-object)
   ((object-code :initform 0
 		:allocation class)
    (color-number :initarg :color-number
 		 :reader color-number
-		 :type color-number)
+		 :type (integer 0 543))
    (hex-code :initarg hex-code
 	     :reader hex-code
-	     :type color-hex-code)))
+	     :type (integer 0 4095))))
 
 (defclass arc (fig-object drawable-object-mixin
 			  terminated-line-mixin)
@@ -186,3 +194,31 @@
 	   :type integer))
   (:documentation "Polyline definition")
   (:metaclass checked-class))
+
+(defclass text (fig-object)
+  ((object-code :initform 4
+		:allocation :class)
+   (sub-type :type (integer 0 2))
+   (color :initarg color
+	  :type color-type)
+   (pen-style)
+   (font :initarg :font
+	 :type font-type)
+   (font-size :initarg :font-size
+	      :type (float 0 *))
+   (font :initarg :font
+	 :type (integer 0 *))
+   (angle :initarg :angle
+	  :type float)
+   (font-flags :initarg :font-flags
+	       :type (integer 0 2))
+   (height :initarg :height
+	   :type (float 0 *))
+   (length :initarg :length
+	   :type float>0)
+   (x :initarg :anchor-x
+      :type (integer 0 *))
+   (y :initarg :anchor-y
+      :type (integer 0 *))
+   (char :intarg :characters
+	 :type string)))
